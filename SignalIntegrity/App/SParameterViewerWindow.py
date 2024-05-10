@@ -44,10 +44,11 @@ import SignalIntegrity.App.Project
 import SignalIntegrity.Lib as si
 
 class SParametersDialog(tk.Toplevel):
-    def __init__(self, parent,sp,filename=None,title=None,buttonLabels=None,standalone=False):
+    def __init__(self, parent,sp,filename=None,title=None,buttonLabels=None,standalone=False,time_before_0=None):
         tk.Toplevel.__init__(self, parent)
         self.parent=parent
         self.standalone=standalone
+        self.time_before_0=time_before_0
         self.withdraw()
 
         import matplotlib
@@ -403,6 +404,7 @@ class SParametersDialog(tk.Toplevel):
         self.EnforceBothPassivityAndCausalityDoer.Activate(areSParameters)
         self.EnforceReciprocityDoer.Activate(areSParameters)
         self.EnforceAllDoer.Activate(areSParameters)
+        self.RemoveOffsetDoer.Activate(areSParameters)
         self.PreserveDCDoer.Activate(areSParameters)
         self.WaveletDenoiseDoer.Activate(areSParameters)
         self.ReadSParametersFromFileDoer.Activate(areSParameters or isCalibration)
@@ -888,7 +890,7 @@ class SParametersDialog(tk.Toplevel):
         self.properties['ReferenceImpedance']=self.sp.m_Z0
         if si.fd.FrequencyList(self.sp.m_f).CheckEvenlySpaced():
             self.properties.CalculateOthersFromBaseInformation()
-            (negativeTime,positiveTime)=self.sp.DetermineImpulseResponseLength()
+            (negativeTime,positiveTime)=self.sp.DetermineImpulseResponseLength(time_before_0=self.time_before_0)
             self.properties['TimeLimitNegative']=negativeTime
             self.properties['TimeLimitPositive']=positiveTime
             self.statusbar.set(str(self.properties['FrequencyPoints'])+
@@ -915,7 +917,7 @@ class SParametersDialog(tk.Toplevel):
         msg=None
         spChanged=False
         if not self.properties['TimePoints'] is None:
-            (negativeTime,positiveTime)=self.sp.DetermineImpulseResponseLength()
+            (negativeTime,positiveTime)=self.sp.DetermineImpulseResponseLength(time_before_0=self.time_before_0)
             if not (negativeTime is None) and not (positiveTime is None) and not (self.properties['TimeLimitNegative'] is None) and not (self.properties['TimeLimitPositive'] is None):
                 if (self.properties['TimeLimitNegative']>negativeTime) or\
                     self.properties['TimeLimitPositive']<positiveTime:
@@ -979,7 +981,7 @@ class SParametersDialog(tk.Toplevel):
             self.bottomRightPlot.format_coord = lambda x, y: ''
 
         fr=self.sp.FrequencyResponse(self.toPort,self.fromPort)
-        ir=fr.ImpulseResponse()
+        ir=fr.ImpulseResponse(time_before_0=self.time_before_0)
 # Consider adding this capability from the dialog.  It prevents step responses from slanting across
 # the screen when there is an offset in the impulse response.
 #         from SignalIntegrity.Lib.TimeDomain.Waveform.ImpulseResponse import ImpulseResponse
@@ -1304,7 +1306,7 @@ class SParametersDialog(tk.Toplevel):
 
     def onUnwrap(self):
         fr=self.sp.FrequencyResponse(self.toPort,self.fromPort)
-        ir=fr.ImpulseResponse()
+        ir=fr.ImpulseResponse(time_before_0=self.time_before_0)
         if ir is not None:
             idx = ir.Values('abs').index(max(ir.Values('abs')))
             TD = ir.Times()[idx] # the time of the main peak
