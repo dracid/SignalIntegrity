@@ -75,7 +75,7 @@ class Simulator(object):
                                                               time_before_0=SignalIntegrity.App.Project['CalculationProperties'].TimeBeforeZero())
     def Simulate(self,TransferMatricesOnly=False):
         netList=self.parent.Drawing.schematic.NetList()
-        netListText=netList.Text()
+        netListText=netList.Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
         import SignalIntegrity.Lib as si
         fd=SignalIntegrity.App.Project['CalculationProperties'].FrequencyList()
         cacheFileName=None
@@ -242,7 +242,7 @@ class Simulator(object):
 
     def VirtualProbe(self,TransferMatricesOnly=False):
         netList=self.parent.Drawing.schematic.NetList()
-        netListText=netList.Text()
+        netListText=netList.Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
         import SignalIntegrity.Lib as si
         cacheFileName=None
         if SignalIntegrity.App.Preferences['Cache.CacheResults']:

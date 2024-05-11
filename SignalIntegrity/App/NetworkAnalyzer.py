@@ -57,7 +57,7 @@ class NetworkAnalyzerSimulator(object):
         # of the network analyzer.
         #
         self.parent.Drawing.stateMachine.Nothing()
-        netList=self.parent.Drawing.schematic.NetList().Text()
+        netList=self.parent.Drawing.schematic.NetList().Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
         import SignalIntegrity.Lib as si
         fd=si.fd.EvenlySpacedFrequencyList(
                 SignalIntegrity.App.Project['CalculationProperties.EndFrequency'],
@@ -92,7 +92,7 @@ class NetworkAnalyzerSimulator(object):
                 if app.OpenProjectFile(os.path.realpath(NetworkAnalyzerProjectFile)):
                     app.Drawing.DrawSchematic()
                     netList=app.Drawing.schematic.NetList()
-                    netListText=netList.Text()
+                    netListText=netList.Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
                 else:
                     raise SignalIntegrityExceptionNetworkAnalyzer('file could not be opened: '+NetworkAnalyzerProjectFile)
             except SignalIntegrityException as e:

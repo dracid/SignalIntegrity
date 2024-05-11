@@ -599,7 +599,7 @@ class SignalIntegrityAppHeadless(object):
         return None
 
     def SimulateNetworkAnalyzerModel(self,callback=None,SParameters=False):
-        netList=self.Drawing.schematic.NetList().Text()
+        netList=self.Drawing.schematic.NetList().Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
         if not self.CheckEquations(): return None
         import SignalIntegrity.Lib as si
         fd=SignalIntegrity.App.Project['CalculationProperties'].FrequencyList()
@@ -630,7 +630,7 @@ class SignalIntegrityAppHeadless(object):
                 if app.OpenProjectFile(os.path.realpath(NetworkAnalyzerProjectFile),args=args):
                     app.Drawing.DrawSchematic()
                     netList=app.Drawing.schematic.NetList()
-                    netListText=netList.Text()
+                    netListText=netList.Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
                 else:
                     pass
             except:
