@@ -1340,7 +1340,7 @@ class SignalIntegrityApp(tk.Frame):
 
     def CalculateErrorTerms(self):
         self.Drawing.stateMachine.Nothing()
-        netList=self.Drawing.schematic.NetList().Text()
+        netList=self.Drawing.schematic.NetList().Text()+SignalIntegrity.App.Project['PostProcessing'].NetListLines()
         if not self.CheckEquations(): return None
         import SignalIntegrity.Lib as si
         cacheFileName=None
