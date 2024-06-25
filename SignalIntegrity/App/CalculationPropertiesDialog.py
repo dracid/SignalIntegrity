@@ -23,11 +23,7 @@ from SignalIntegrity.Lib.ToSI import nextHigher12458
 import SignalIntegrity.App.Project
 import SignalIntegrity.App.Preferences
 
-import sys
-if sys.version_info.major < 3:
-    import Tkinter as tk
-else:
-    import tkinter as tk
+import tkinter as tk
 
 class CalculationPropertiesDialog(PropertiesDialog):
     def __init__(self,parent):

@@ -17,35 +17,28 @@ SignalIntegrityApp.py
 #
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>
+
+import tkinter as tk
+from tkinter import font
+from tkinter import messagebox
+
 import sys
-
-if sys.version_info.major < 3:
-    import Tkinter as tk
-    import tkFont as font
-    import tkMessageBox as messagebox
-else:
-    import tkinter as tk
-    from tkinter import font
-    from tkinter import messagebox
-
-
 import copy
 import os
 
 # import matplotlib
 # matplotlib.use('TkAgg')
-
-from SignalIntegrity.Lib.ToSI import ToSI
+from SignalIntegrity.App.DeviceExtendedConfiguration import DeviceExtendedConfiguration
+DeviceExtendedConfiguration.headless=False
 from SignalIntegrity.App.PartPicture import PartPicture
-from SignalIntegrity.App.PartProperty import PartPropertyReferenceDesignator
 from SignalIntegrity.App.Device import DeviceList,DeviceListUnknown,DeviceListSystem
 from SignalIntegrity.App.Device import DeviceOutput,DeviceMeasurement,Port,DeviceStim,DeviceNetName
 from SignalIntegrity.App.DeviceProperties import DevicePropertiesDialog
 from SignalIntegrity.App.DevicePicker import DevicePickerDialog
-from SignalIntegrity.App.Schematic import Drawing
+from SignalIntegrity.App.Drawing import Drawing
 from SignalIntegrity.App.Simulator import Simulator
 from SignalIntegrity.App.NetworkAnalyzer import NetworkAnalyzerSimulator
-from SignalIntegrity.App.NetList import NetListDialog
+from SignalIntegrity.App.NetListDialog import NetListDialog
 from SignalIntegrity.App.SParameterViewerWindow import SParametersDialog
 from SignalIntegrity.App.PostProcessingDialog import PostProcessingDialog
 from SignalIntegrity.App.EquationsDialog import EquationsDialog
@@ -60,8 +53,6 @@ from SignalIntegrity.App.PreferencesDialog import PreferencesDialog
 from SignalIntegrity.App.FilePicker import AskSaveAsFilename,AskOpenFileName
 from SignalIntegrity.App.ProjectFile import ProjectFile
 from SignalIntegrity.App.CalculationPropertiesDialog import CalculationPropertiesDialog,CalculationProperty
-from SignalIntegrity.App.SignalIntegrityAppHeadless import SignalIntegrityAppHeadless
-from SignalIntegrity.App.EyeDiagramPropertiesDialog import EyeDiagramPropertiesDialog
 from SignalIntegrity.App.PartProperty import *
 from SignalIntegrity.App.Archive import Archive,SignalIntegrityExceptionArchive
 from SignalIntegrity.App.InformationMessage import InformationMessage

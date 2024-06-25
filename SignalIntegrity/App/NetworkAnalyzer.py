@@ -18,23 +18,15 @@ NetworkAnalyzer.py
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>
 
-import sys
-import os
-
-if sys.version_info.major < 3:
-    import Tkinter as tk
-    import tkMessageBox as messagebox
-else:
-    import tkinter as tk
-    from tkinter import messagebox
+from tkinter import messagebox
 
 from SignalIntegrity.App.ProgressDialog import ProgressDialog
 from SignalIntegrity.App.SignalIntegrityAppHeadless import SignalIntegrityAppHeadless
-from SignalIntegrity.App.Simulator import SimulatorDialog
+from SignalIntegrity.App.SimulatorDialog import SimulatorDialog
 from SignalIntegrity.App.Files import FileParts
 from SignalIntegrity.Lib.Exception import SignalIntegrityException,SignalIntegrityExceptionNetworkAnalyzer
 
-import copy,os
+import os
 
 import SignalIntegrity.App.Project
 
