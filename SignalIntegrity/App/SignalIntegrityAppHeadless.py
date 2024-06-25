@@ -18,23 +18,16 @@ SignalIntegrityAppHeadless.py
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>
 import sys
-
-if sys.version_info.major < 3:
-    import Tkinter as tk
-else:
-    import tkinter as tk
-
 import os
 
 from SignalIntegrity.App.Files import FileParts
 from SignalIntegrity.App.Schematic import Schematic
 from SignalIntegrity.App.Preferences import Preferences
-from SignalIntegrity.App.ProjectFile import ProjectFile,CalculationProperties
+from SignalIntegrity.App.ProjectFile import ProjectFile
 from SignalIntegrity.App.TikZ import TikZ
 from SignalIntegrity.App.EyeDiagram import EyeDiagram
 from SignalIntegrity.App.PartPicture import PartPicture
 from SignalIntegrity.App.Archive import Archive,SignalIntegrityExceptionArchive
-from SignalIntegrity.Lib.Exception import SignalIntegrityException
 import SignalIntegrity.App.Project
 
 class ProjectStack(object):

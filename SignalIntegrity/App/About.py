@@ -19,15 +19,10 @@ About.py
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>
 import sys
-if sys.version_info.major < 3:
-    import Tkinter as tk
-    import ScrolledText as scrolledtext
-else:
-    import tkinter as tk
-    from tkinter import scrolledtext
+
+import tkinter as tk
+from tkinter import scrolledtext
 import webbrowser
-import textwrap
-from PIL import ImageTk,Image
 
 from SignalIntegrity.__about__ import __version__,__url__,__copyright__,__description__,__author__,__email__,__project__
 import SignalIntegrity.App.Project

@@ -19,16 +19,11 @@ SParameterViewerWindow.py
 # If not, see <https://www.gnu.org/licenses/>
 import sys
 
-if sys.version_info.major < 3:
-    import Tkinter as tk
-    import tkMessageBox as messagebox
-else:
-    import tkinter as tk
-    from tkinter import  messagebox
+import tkinter as tk
+from tkinter import  messagebox
 
 import math
 
-from SignalIntegrity.App.PartProperty import PartPropertyDelay,PartPropertyReferenceImpedance
 from SignalIntegrity.App.Files import FileParts
 from SignalIntegrity.App.MenuSystemHelpers import Doer,StatusBar
 from SignalIntegrity.App.FilePicker import AskOpenFileName,AskSaveAsFilename

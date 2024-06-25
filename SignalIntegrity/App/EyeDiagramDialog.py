@@ -18,14 +18,8 @@ EyeDiagramDialog.py
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>
 
-import sys
-
-if sys.version_info.major < 3:
-    import Tkinter as tk
-    import tkMessageBox as messagebox
-else:
-    import tkinter as tk
-    from tkinter import messagebox
+import tkinter as tk
+from tkinter import messagebox
 
 from SignalIntegrity.App.MenuSystemHelpers import Doer,StatusBar
 from SignalIntegrity.App.ProgressDialog import ProgressDialog
@@ -237,7 +231,7 @@ class EyeDiagramDialog(tk.Toplevel):
         self.callback=None
 
     def SimulatorDialog(self):
-        from SignalIntegrity.App.Simulator import SimulatorDialog
+        from SignalIntegrity.App.SimulatorDialog import SimulatorDialog
         if not hasattr(self,'simulatorDialog'):
             self.simulatorDialog=SimulatorDialog(self.parent)
         if self.simulatorDialog == None:

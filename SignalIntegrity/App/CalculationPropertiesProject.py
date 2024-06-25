@@ -18,13 +18,8 @@ CalculationPropertiesProject.py
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>
 
-import sys
-if sys.version_info.major < 3:
-    import Tkinter as tk
-    import tkColorChooser as colorchooser
-else:
-    import tkinter as tk
-    from tkinter import colorchooser
+import tkinter as tk
+from tkinter import colorchooser
 
 from SignalIntegrity.App.FilePicker import AskOpenFileName,AskSaveAsFilename
 from SignalIntegrity.Lib.ToSI import FromSI,ToSI
